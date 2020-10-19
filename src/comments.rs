@@ -1,4 +1,5 @@
 use std::env;
+use serde::{Serialize, Deserialize};
 
 #[derive(Serialize, Deserialize)]
 pub struct Comment {
@@ -11,7 +12,7 @@ pub struct Comment {
     pub id: i32,
 }
 
-pub fn add(thread_id: i32, content: String) -> Result<Comment, Box<std::error::Error>> {
+pub fn add(thread_id: i32, content: String) -> Result<Comment, Box<dyn std::error::Error>> {
     let suffix = "/api/v3/comments/add";
 
     if let Ok(token) = env::var("auth") {

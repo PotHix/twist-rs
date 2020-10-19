@@ -1,4 +1,5 @@
 use std::env;
+use serde::{Serialize, Deserialize};
 
 #[derive(Serialize, Deserialize)]
 pub struct TwistSearch {
@@ -35,7 +36,7 @@ pub struct TwistSearchExpandedCommentItem {
     pub thread_id: Option<i32>,
 }
 
-pub fn search(query: String) -> Result<TwistSearch, Box<std::error::Error>> {
+pub fn search(query: String) -> Result<TwistSearch, Box<dyn std::error::Error>> {
     let suffix = "/api/v3/search/query";
 
     if let Ok(token) = env::var("auth") {
@@ -56,7 +57,7 @@ pub fn search(query: String) -> Result<TwistSearch, Box<std::error::Error>> {
     }
 }
 
-pub fn details(details_link: String) -> Result<TwistSearchDetails, Box<std::error::Error>> {
+pub fn details(details_link: String) -> Result<TwistSearchDetails, Box<dyn std::error::Error>> {
     if let Ok(token) = env::var("auth") {
         let bearer_token = "Bearer ".to_owned() + &token;
 
