@@ -34,11 +34,13 @@ fn main() {
     let opt = Opt::from_args();
     println!("{:?}", opt);
 
-    let result = match opt.cmd {
-        Command::Search { query } => twist_rs::search::search(token, query),
-    };
+    match opt.cmd {
+        Command::Search { query } => {
+            let result = twist_rs::search::search(token, query);
 
-    if let Ok(res) = result {
-        println!("{}", res.items.len())
-    }
+            if let Ok(res) = result {
+                println!("{}", res.items.len())
+            }
+        }
+    };
 }
