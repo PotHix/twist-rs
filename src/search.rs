@@ -36,14 +36,14 @@ pub struct TwistSearchExpandedCommentItem {
 }
 
 pub fn search(token: String, query: String) -> Result<TwistSearch, Box<dyn std::error::Error>> {
-    let suffix = "/api/v3/search/query";
+    let suffix = "/search/query";
 
     let params = [("query", query)];
     let bearer_token = "Bearer ".to_owned() + &token;
 
     let client = reqwest::Client::new();
     let mut res = client
-        .get((super::TWIST_API.to_owned() + suffix).as_str())
+        .get((super::TWIST_API_URL.to_owned() + suffix).as_str())
         .header("Authorization", bearer_token)
         .query(&params)
         .send()?;
@@ -57,7 +57,7 @@ pub fn details(token: String, details_link: String) -> Result<TwistSearchDetails
 
     let client = reqwest::Client::new();
     let mut res = client
-        .get((super::TWIST_API.to_owned() + details_link.as_str()).as_str())
+        .get((super::TWIST_URL.to_owned() + details_link.as_str()).as_str())
         .header("Authorization", bearer_token)
         .send()?;
 

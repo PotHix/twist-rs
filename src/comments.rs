@@ -12,14 +12,14 @@ pub struct Comment {
 }
 
 pub fn add(token: String, thread_id: i32, content: String) -> Result<Comment, Box<dyn std::error::Error>> {
-    let suffix = "/api/v3/comments/add";
+    let suffix = "/comments/add";
 
     let params = [("content", content), ("thread_id", thread_id.to_string())];
     let bearer_token = "Bearer ".to_owned() + &token;
 
     let client = reqwest::Client::new();
     let mut res = client
-        .post((super::TWIST_API.to_owned() + suffix).as_str())
+        .post((super::TWIST_API_URL.to_owned() + suffix).as_str())
         .header("Authorization", bearer_token)
         .form(&params)
         .send()?;
