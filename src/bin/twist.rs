@@ -3,10 +3,6 @@ use structopt::StructOpt;
 
 use twist_rs;
 
-struct Twist {
-    token: String,
-}
-
 #[derive(Debug, StructOpt)]
 #[structopt(name = "twist", about = "The CLI for the Twist API")]
 struct Opt {
@@ -23,30 +19,26 @@ enum Command {
         #[structopt(short = "q")]
         query: String,
     },
-
-    Thread {
-        id: u64,
-    },
-
-    Comment {
-        id: u64,
-    },
 }
 
 fn main() {
-    if let Ok(t) = env::var("auth") {
-        let config = Twist { token: t };
-    } else {
-        println!("Token not found. Please define it as the $auth environment variable");
-        process::exit(0);
+    let token;
+    match env::var("auth") {
+        Ok(val) => token = val,
+        Err(_e) => {
+            println!("Token not found. Please define it as the $auth environment variable");
+            process::exit(0);
+        }
     }
 
     let opt = Opt::from_args();
     println!("{:?}", opt);
 
-    match opt.cmd {
-        Command::Search { query } => println!("thread {}", query), //twist_rs::search::search(query),
-        Command::Thread { id } => println!("thread {}", id),
-        Command::Comment { id } => println!("comment {}", id),
+    let result = match opt.cmd {
+        Command::Search { query } => twist_rs::search::search(token, query),
+    };
+
+    if let Ok(res) = result {
+        println!("{}", res.items.len())
     }
 }

@@ -1,4 +1,3 @@
-use std::env;
 use serde::{Serialize, Deserialize};
 
 #[derive(Serialize, Deserialize)]
@@ -12,23 +11,19 @@ pub struct Comment {
     pub id: i32,
 }
 
-pub fn add(thread_id: i32, content: String) -> Result<Comment, Box<dyn std::error::Error>> {
+pub fn add(token: String, thread_id: i32, content: String) -> Result<Comment, Box<dyn std::error::Error>> {
     let suffix = "/api/v3/comments/add";
 
-    if let Ok(token) = env::var("auth") {
-        let params = [("content", content), ("thread_id", thread_id.to_string())];
-        let bearer_token = "Bearer ".to_owned() + &token;
+    let params = [("content", content), ("thread_id", thread_id.to_string())];
+    let bearer_token = "Bearer ".to_owned() + &token;
 
-        let client = reqwest::Client::new();
-        let mut res = client
-            .post((super::TWIST_API.to_owned() + suffix).as_str())
-            .header("Authorization", bearer_token)
-            .form(&params)
-            .send()?;
+    let client = reqwest::Client::new();
+    let mut res = client
+        .post((super::TWIST_API.to_owned() + suffix).as_str())
+        .header("Authorization", bearer_token)
+        .form(&params)
+        .send()?;
 
-        let comment: Comment = res.json()?;
-        return Ok(comment);
-    } else {
-        panic!("Token not available for the request");
-    }
+    let comment: Comment = res.json()?;
+    return Ok(comment);
 }
