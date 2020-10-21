@@ -1,4 +1,5 @@
 pub mod comments;
+pub mod endpoints;
 pub mod search;
 
 const TWIST_URL: &'static str = "https://api.twist.com/";
