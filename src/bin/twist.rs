@@ -10,7 +10,7 @@ struct Opt {
     debug: bool,
 
     #[structopt(subcommand)]
-    cmd: Command
+    cmd: Command,
 }
 
 #[derive(Debug, StructOpt)]

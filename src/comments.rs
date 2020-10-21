@@ -1,4 +1,4 @@
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize)]
 pub struct Comment {
@@ -12,7 +12,11 @@ pub struct Comment {
 }
 
 #[tokio::main]
-pub async fn add(token: String, thread_id: i32, content: String) -> Result<Comment, Box<dyn std::error::Error>> {
+pub async fn add(
+    token: String,
+    thread_id: i32,
+    content: String,
+) -> Result<Comment, Box<dyn std::error::Error>> {
     let suffix = "/comments/add";
 
     let params = [("content", content), ("thread_id", thread_id.to_string())];

@@ -1,4 +1,4 @@
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize)]
 pub struct TwistSearch {
@@ -36,7 +36,10 @@ pub struct TwistSearchExpandedCommentItem {
 }
 
 #[tokio::main]
-pub async fn search(token: String, query: String) -> Result<TwistSearch, Box<dyn std::error::Error>> {
+pub async fn search(
+    token: String,
+    query: String,
+) -> Result<TwistSearch, Box<dyn std::error::Error>> {
     let suffix = "/search/query";
 
     let params = [("query", query)];
@@ -55,7 +58,10 @@ pub async fn search(token: String, query: String) -> Result<TwistSearch, Box<dyn
 }
 
 #[tokio::main]
-pub async fn details(token: String, details_link: String) -> Result<TwistSearchDetails, Box<dyn std::error::Error>> {
+pub async fn details(
+    token: String,
+    details_link: String,
+) -> Result<TwistSearchDetails, Box<dyn std::error::Error>> {
     let bearer_token = "Bearer ".to_owned() + &token;
 
     let client = reqwest::Client::new();
