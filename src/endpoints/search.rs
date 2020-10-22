@@ -1,8 +1,5 @@
 #[tokio::main]
-pub async fn twist_search(
-    token: String,
-    query: String,
-) -> Result<String, Box<dyn std::error::Error>> {
+pub async fn search(token: String, query: String) -> Result<String, Box<dyn std::error::Error>> {
     let suffix = "/search/query";
 
     let params = [("query", query)];
@@ -20,7 +17,7 @@ pub async fn twist_search(
 }
 
 #[tokio::main]
-pub async fn twist_details(
+pub async fn details(
     token: String,
     details_link: String,
 ) -> Result<String, Box<dyn std::error::Error>> {

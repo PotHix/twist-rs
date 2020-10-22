@@ -37,7 +37,7 @@ pub struct TwistSearchExpandedCommentItem {
 }
 
 pub fn search(token: String, query: String) -> Result<TwistSearch, Box<dyn std::error::Error>> {
-    let res = search::twist_search(token, query)?;
+    let res = search::search(token, query)?;
     let search: TwistSearch = serde_json::from_str(&res)?;
     return Ok(search);
 }
@@ -47,7 +47,7 @@ pub async fn details(
     token: String,
     details_link: String,
 ) -> Result<TwistSearchDetails, Box<dyn std::error::Error>> {
-    let res = search::twist_search(token, details_link)?;
+    let res = search::details(token, details_link)?;
     let search: TwistSearchDetails = serde_json::from_str(&res)?;
     return Ok(search);
 }

@@ -36,10 +36,8 @@ fn main() {
 
     match opt.cmd {
         Command::Search { query } => {
-            let result = twist_rs::search::search(token, query);
-
-            if let Ok(res) = result {
-                println!("{}", res.items.len())
+            if let Ok(res) = twist_rs::endpoints::search::search(token, query) {
+                println!("{}", res);
             }
         }
     };
