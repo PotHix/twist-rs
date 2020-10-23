@@ -1,34 +1,37 @@
-#[tokio::main]
-pub async fn search(token: String, query: String) -> Result<String, Box<dyn std::error::Error>> {
-    let suffix = "/search/query";
+use reqwest::blocking::Response;
+
+pub fn search(token: String, query: String) -> Result<Response, Box<dyn std::error::Error>> {
+    let mut url = super::super::URL.to_string();
+    url.push_str(super::super::API_VERSION);
+    url.push_str("/search/query");
 
     let params = [("query", query)];
-    let bearer_token = "Bearer ".to_owned() + &token;
+    let bearer_token = "Bearer ".to_string() + &token;
 
-    let client = reqwest::Client::new();
+    let client = reqwest::blocking::Client::new();
     let res = client
-        .get((super::super::TWIST_API_URL.to_owned() + suffix).as_str())
+        .get(url.as_str())
         .header("Authorization", bearer_token)
         .query(&params)
-        .send()
-        .await?;
+        .send()?;
 
-    return Ok(res.text().await?);
+    return Ok(res);
 }
 
-#[tokio::main]
-pub async fn details(
+pub fn details(
     token: String,
     details_link: String,
-) -> Result<String, Box<dyn std::error::Error>> {
-    let bearer_token = "Bearer ".to_owned() + &token;
+) -> Result<Response, Box<dyn std::error::Error>> {
+    let mut url = super::super::URL.to_string();
+    url.push_str(details_link.as_str());
 
-    let client = reqwest::Client::new();
+    let bearer_token = "Bearer ".to_string() + &token;
+
+    let client = reqwest::blocking::Client::new();
     let res = client
-        .get((super::super::TWIST_URL.to_owned() + details_link.as_str()).as_str())
+        .get(url.as_str())
         .header("Authorization", bearer_token)
-        .send()
-        .await?;
+        .send()?;
 
-    return Ok(res.text().await?);
+    return Ok(res);
 }

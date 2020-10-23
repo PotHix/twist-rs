@@ -11,20 +11,21 @@ pub struct Comment {
     pub id: i32,
 }
 
-#[tokio::main]
 pub async fn add(
     token: String,
     thread_id: i32,
     content: String,
 ) -> Result<Comment, Box<dyn std::error::Error>> {
-    let suffix = "/comments/add";
+    let mut url = super::URL.to_string();
+    url.push_str(super::API_VERSION);
+    url.push_str("/comments/add");
 
     let params = [("content", content), ("thread_id", thread_id.to_string())];
     let bearer_token = "Bearer ".to_owned() + &token;
 
     let client = reqwest::Client::new();
     let res = client
-        .post((super::TWIST_API_URL.to_owned() + suffix).as_str())
+        .post(url.as_str())
         .header("Authorization", bearer_token)
         .form(&params)
         .send()

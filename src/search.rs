@@ -38,16 +38,15 @@ pub struct TwistSearchExpandedCommentItem {
 
 pub fn search(token: String, query: String) -> Result<TwistSearch, Box<dyn std::error::Error>> {
     let res = search::search(token, query)?;
-    let search: TwistSearch = serde_json::from_str(&res)?;
+    let search: TwistSearch = res.json()?;
     return Ok(search);
 }
 
-#[tokio::main]
-pub async fn details(
+pub fn details(
     token: String,
     details_link: String,
 ) -> Result<TwistSearchDetails, Box<dyn std::error::Error>> {
     let res = search::details(token, details_link)?;
-    let search: TwistSearchDetails = serde_json::from_str(&res)?;
+    let search: TwistSearchDetails = res.json()?;
     return Ok(search);
 }

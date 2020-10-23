@@ -36,8 +36,10 @@ fn main() {
 
     match opt.cmd {
         Command::Search { query } => {
-            if let Ok(res) = twist_rs::endpoints::search::search(token, query) {
-                println!("{}", res);
+            if let Ok(twist_search) = twist_rs::search::search(token, query) {
+                if let Ok(json_str) = serde_json::to_string(&twist_search) {
+                    println!("{}", json_str);
+                }
             }
         }
     };

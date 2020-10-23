@@ -2,8 +2,8 @@ pub mod comments;
 pub mod endpoints;
 pub mod search;
 
-const TWIST_URL: &'static str = "https://api.twist.com/";
-const TWIST_API_URL: &'static str = "https://api.twist.com/api/v3";
+const URL: &'static str = "https://api.twist.com";
+const API_VERSION: &'static str = "/api/v3";
 
 #[cfg(test)]
 mod tests {
