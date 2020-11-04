@@ -1,0 +1,16 @@
+[package]
+name = "twist_rs_js"
+version = "0.1.0"
+build = "build.rs"
+edition = "2018"
+
+[lib]
+name = "twist_rs_js"
+crate-type = ["cdylib"]
+
+[build-dependencies]
+neon-build = "0.5"
+
+[dependencies]
+neon = "0.5"
+twist-rs = {path = "../../../"}
