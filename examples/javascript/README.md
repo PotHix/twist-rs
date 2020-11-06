@@ -25,6 +25,12 @@ It will run the `neon` CLI to build the Rust NAPI project and prepare the
 
 ## Running
 
+This project uses an environment variable called `auth` as the token to use for
+Twist, so please set this environment variable first. If you are using a
+unix-like OS, you can just `export` it:
+
+        export auth=oauth2:10923847102983471029370127198743298
+
 To run the project, you just have to execute:
 
         node lib/index.js
