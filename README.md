@@ -19,18 +19,37 @@ multi-platform and multi-language support that Rust can provide.
 
 ## Initial goals
 
-* [ ] Implement one endpoint of the API as a library
-* [ ] Expose this endpoint via CLI for easy manual testing and CLI exploration
-* [ ] Make functions and structures more FFI-able
-* [ ] Choose a secondary language and export this function using it
+* [x] Implement one endpoint of the API as a library
+* [x] Expose this endpoint via CLI for easy manual testing and CLI exploration
+* [x] Make functions and structures more FFI-able
+* [x] Choose a secondary language and export this function using it
 
+## How to run it
 
-## Future goals
+It's a standard Rust crate and can be built with standard cargo commands:
 
-* [ ] Implement the happy path endpoints
-* [ ] Upload as a crate to crates.io
-* [ ] Create bindings for more languages if the multi-platform experiment succeeded
+        cargo build
 
+This command will build the library and also a CLI so you can test it. The CLI
+will be available at `./target/debug/twist`.
+
+### Testing it manually via CLI
+
+To manually test the CLI, you will need your Twist auth token defined an
+environment variable called `auth`. If you are using a unix-like OS, you can
+just `export` it:
+
+        export auth=oauth2:10923847102983471029370127198743298
+
+With the proper token defined, the CLI is ready.
+
+There are few commands available now but you can try the search command:
+
+        ./target/debug/twist search -q twist
+
+For more information use the CLI help:
+
+        ./target/debug/twist -h
 
 ## Author
 
