@@ -1,0 +1,12 @@
+[package]
+name = "twist"
+version = "0.1.0"
+authors = ["PotHix <pothix@pothix.com>"]
+edition = "2018"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+jni = "0.18.0"
+twist-rs = {path = "../../../"}
