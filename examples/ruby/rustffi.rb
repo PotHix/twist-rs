@@ -6,4 +6,4 @@ module Twist
   attach_function :search_ffi, [:string, :string], :string
 end
 
-puts Twist.search_ffi(ENV["auth"], "pothix")
+puts Twist.search_ffi(ENV["auth"] || "", "pothix")
