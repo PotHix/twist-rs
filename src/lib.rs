@@ -21,11 +21,3 @@ pub extern "C" fn search_ffi(token: *mut c_char, query: *mut c_char) -> *mut c_c
     let s = CString::new(res.unwrap().text().unwrap()).unwrap();
     return s.into_raw();
 }
-
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn it_works() {
-        assert_eq!(2 + 2, 4);
-    }
-}
