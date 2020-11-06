@@ -1,8 +1,9 @@
 Twist Java example
 ==================
 
-To be able to use Rust from Java, one needs to export functions via JNI.
-This project imports the [JNI crate](https://crates.io/crates/jni) and uses its types to expose the `search` function from twist-rs.
+To be able to use Rust from Java, one needs to export functions via JNI.  This
+project imports the [JNI crate](https://crates.io/crates/jni) and uses its
+types to expose the `search` function from twist-rs.
 
 ## Building
 
@@ -21,7 +22,9 @@ repo) but you can regenerate it by running:
 
 The `Twist.h` file is important to link the Rust implementation to the Java one.
 
-Now you just have to run the program:
+## Running
+
+To run the project, you just have to execute:
 
         java Twist
 
