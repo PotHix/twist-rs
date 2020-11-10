@@ -12,4 +12,4 @@ end
 
 result = Twist.search(ENV["auth"] || "", "pothix")
 puts result
-string_free(result)
+Twist.string_free(result)
