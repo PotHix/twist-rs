@@ -17,3 +17,12 @@ pub extern "C" fn search(token: *mut c_char, query: *mut c_char) -> *mut c_char 
     return s.into_raw();
 }
 
+#[no_mangle]
+pub extern "C" fn string_free(s: *mut c_char) {
+    unsafe {
+        if s.is_null() {
+            return;
+        }
+        CString::from_raw(s)
+    };
+}
