@@ -15,10 +15,7 @@ struct Opt {
 
 #[derive(Debug, StructOpt)]
 enum Command {
-    Search {
-        #[structopt(short = "q")]
-        query: String,
-    },
+    Search { query: String },
 }
 
 fn main() {
