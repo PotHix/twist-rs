@@ -34,8 +34,8 @@ fn main() {
     match opt.cmd {
         Command::Search { query } => {
             if let Ok(twist_search) = twist_rs::search::search(token, query) {
-                if let Ok(json_str) = serde_json::to_string(&twist_search) {
-                    println!("{}", json_str);
+                for item in twist_search.items {
+                    println!("➡ {}", item.snippet);
                 }
             }
         }
