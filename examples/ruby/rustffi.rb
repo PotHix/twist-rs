@@ -11,5 +11,9 @@ module Twist
 end
 
 result = Twist.search(ENV["auth"] || "", "pothix")
+
 puts result
+
+# We could improve this by using `FFI::AutoPointer`, but it's not needed for
+# this example. More info: https://github.com/ffi/ffi/wiki/Pointers#fresh-memory
 Twist.string_free(result)
