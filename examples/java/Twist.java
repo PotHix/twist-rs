@@ -3,7 +3,6 @@ class Twist {
 
     static {
         System.loadLibrary("twist");
-        //System.loadLibrary("/home/pothix/repos/twist-rs/target/debug/libtwist_rs.so");
     }
 
     public static void main(String[] args) {
