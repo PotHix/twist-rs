@@ -37,4 +37,4 @@ To run the project, you just have to execute:
 If you find a `java.lang.UnsatisfiedLinkError` error, you have to be sure that
 the library is in the right library path. On Linux you can:
 
-        LD_LIBRARY_PATH=/path/to/twist-rs/target/debug java Twist
+        LD_LIBRARY_PATH=$PWD/twist/target/debug java Twist
